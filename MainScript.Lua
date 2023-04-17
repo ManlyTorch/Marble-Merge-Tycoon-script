@@ -7,14 +7,14 @@ local function SellScript()
 	local PlayerPos = game.Workspace[Player].HumanoidRootPart
 	local function Sell()
 		local DisplayName = game.Players.LocalPlayer.DisplayName
-		local RUX = 1
-		local RUZ = 1
-		local DRBX = 1
-		local DRBZ = 1
-		local DBX = 1
-		local DBZ = 1
-		local MBX = 1
-		local MBZ = 1
+        local RUX = 1
+        local RUZ = 1
+        local DRBX = 1
+        local DRBZ = 1
+        local DBX = 1
+        local DBZ = 1
+        local MBX = 1
+        local MBZ = 1
 		for i, v in pairs(game.Workspace:GetChildren()) do
 			if v.Name == "Template" then
 				if v:WaitForChild("BillboardGui"):WaitForChild("TextLabel").Text == DisplayName then
@@ -54,6 +54,9 @@ local function SellScript()
 		task.wait(0.1)
 		PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ, RVX, UVX, LVX, RVY, UVY, LVY, RVZ, UVZ, LVZ)
 		-- MergeButton
+		task.wait(0.1)
+		PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ-20, RVX, UVX, LVX, RVY, UVY, LVY, RVZ, UVZ, LVZ)
+		-- Extra Position to avoid hitting other buttons.
 		task.wait(0.1)
 		PlayerPos.CFrame = CFrame.new(DRBX, 6, DRBZ, RVX, UVX, LVX, RVY, UVY, LVY, RVZ, UVZ, LVZ)
 		-- 25 Droppers
