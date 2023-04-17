@@ -7,14 +7,14 @@ local function SellScript()
 	local PlayerPos = game.Workspace[Player].HumanoidRootPart
 	local function Sell()
 		local DisplayName = game.Players.LocalPlayer.DisplayName
-        local RUX = 1
-        local RUZ = 1
-        local DRBX = 1
-        local DRBZ = 1
-        local DBX = 1
-        local DBZ = 1
-        local MBX = 1
-        local MBZ = 1
+		local RUX = 1
+		local RUZ = 1
+		local DRBX = 1
+		local DRBZ = 1
+		local DBX = 1
+		local DBZ = 1
+		local MBX = 1
+		local MBZ = 1
 		for i, v in pairs(game.Workspace:GetChildren()) do
 			if v.Name == "Template" then
 				if v:WaitForChild("BillboardGui"):WaitForChild("TextLabel").Text == DisplayName then
