@@ -112,13 +112,13 @@ print(DisplayName)
 local function Marbles()
 	for i, v in pairs(game.Workspace:GetChildren()) do
 		if v.Name == "Template" then
-			if v:WaitForChild("BillboardGui"):WaitForChild("TextLabel").Text == DisplayName then
-				for i2, v2 in pairs(v.Marbles:GetChildren()) do
+			for i2, v2 in pairs(v.Marbles:GetChildren()) do
+				if v:WaitForChild("BillboardGui"):WaitForChild("TextLabel").Text == DisplayName then
 					Update()
 					v2.Position = PlayerPos.Position
+				else
+					v2:Destroy()
 				end
-			else
-				v:Destroy()
 			end
 		end
 	end
