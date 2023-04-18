@@ -1,11 +1,12 @@
 local bg = Instance.new('BodyGyro',game.Workspace.Manly_Torch:WaitForChild('HumanoidRootPart'))
 local playerHead = game.Players.LocalPlayer.Character.Head
-local function SellScript()
+local function DepositScript()
 	local RateToggle = false
 	local script = Instance.new("LocalScript", game.CoreGui)
+	script.Name = "DepositScript"
 	local Player = game.Players.LocalPlayer.Name
 	local PlayerPos = game.Workspace[Player].HumanoidRootPart
-	local function Sell()
+	local function Deposit()
 		local DisplayName = game.Players.LocalPlayer.DisplayName
         local RUX = 1
         local RUZ = 1
@@ -40,31 +41,23 @@ local function SellScript()
 				end
 			end
 		end
-		local RVX = PlayerPos.CFrame.RightVector.X
-		local RVY = PlayerPos.CFrame.RightVector.Y
-		local RVZ = PlayerPos.CFrame.RightVector.Z
-		local UVX = PlayerPos.CFrame.UpVector.X
-		local UVY = PlayerPos.CFrame.UpVector.Y
-		local UVZ = PlayerPos.CFrame.UpVector.Z
-		local LVX = PlayerPos.CFrame.LookVector.X
-		local LVY = PlayerPos.CFrame.LookVector.Y
-		local LVZ = PlayerPos.CFrame.LookVector.Z
-		PlayerPos.CFrame = CFrame.new(DBX, 6, DBZ, RVX, UVX, LVX, RVY, UVY, LVY, RVZ, UVZ, LVZ)
+		
+		PlayerPos.CFrame = CFrame.new(DBX, 6, DBZ, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
 		-- DepositButton
-		task.wait(0.1)
-		PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ, RVX, UVX, LVX, RVY, UVY, LVY, RVZ, UVZ, LVZ)
+		task.wait(0.5)
+		PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
 		-- MergeButton
-		task.wait(0.1)
-		PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ-20, RVX, UVX, LVX, RVY, UVY, LVY, RVZ, UVZ, LVZ)
+		task.wait(0.5)
+		PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ-20, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
 		-- Extra Position to avoid hitting other buttons.
-		task.wait(0.1)
-		PlayerPos.CFrame = CFrame.new(DRBX, 6, DRBZ, RVX, UVX, LVX, RVY, UVY, LVY, RVZ, UVZ, LVZ)
+		task.wait(0.5)
+		PlayerPos.CFrame = CFrame.new(DRBX, 6, DRBZ, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
 		-- 25 Droppers
-		task.wait(0.1)
+		task.wait(0.5)
 		if RateToggle then
-			PlayerPos.CFrame = CFrame.new(RUX, 6, RUZ, RVX, UVX, LVX, RVY, UVY, LVY, RVZ, UVZ, LVZ)
+			PlayerPos.CFrame = CFrame.new(RUX, 6, RUZ, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
             -- Buy rate upgrade
-			task.wait(0.1)
+			task.wait(0.5)
 		end
 	end
 	local Toggle = false
@@ -79,27 +72,36 @@ local function SellScript()
 			end
 		end
 	end)
-	while task.wait(0.001) do
+	while task.wait(0.1) do
 		if Toggle then
-			Sell()
+			Deposit()
 		end
 	end
 end
-coroutine.wrap(SellScript)()
-local function Obby()
-	for i, v in pairs(game.Workspace.Obby.Obbys:GetChildren()) do
-		for i2, v2 in pairs(v:GetChildren()) do
-			for i3, v3 in pairs(v2:GetChildren()) do
-				for i4, v4 in pairs(v3:GetChildren()) do
-					if v4.Name == "TouchInterest" then
-						firetouchinterest(playerHead, v4.Parent, 0)
-						firetouchinterest(playerHead, v4.Parent, 1)
+coroutine.wrap(DepositScript)()
+local function ObbyScript()
+	local script = Instance.new("LocalScript", game.CoreGui)
+	script.Name = "MarbleScript"
+	local function Obby()
+		for i, v in pairs(game.Workspace.Obby.Obbys:GetChildren()) do
+			for i2, v2 in pairs(v:GetChildren()) do
+				for i3, v3 in pairs(v2:GetChildren()) do
+					for i4, v4 in pairs(v3:GetChildren()) do
+						if v4.Name == "TouchInterest" then
+							firetouchinterest(playerHead, v4.Parent, 0)
+							task.wait(0.2)
+							firetouchinterest(playerHead, v4.Parent, 1)
+						end
 					end
 				end
 			end
 		end
 	end
+	while task.wait(0.1) and true do 
+		Obby()
+	end
 end
+coroutine.wrap(ObbyScript)() 
 local Player = game.Players.LocalPlayer.Name
 local PlayerPos = game.Workspace[Player].HumanoidRootPart
 local function Update()
@@ -108,16 +110,15 @@ local function Update()
 end
 Update()
 local DisplayName = game.Players.LocalPlayer.DisplayName
-print(DisplayName)
 local function Marbles()
 	for i, v in pairs(game.Workspace:GetChildren()) do
 		if v.Name == "Template" then
-			for i2, v2 in pairs(v.Marbles:GetChildren()) do
+			for i2, v2 in pairs(v:WaitForChild("Marbles"):GetChildren()) do
 				if v:WaitForChild("BillboardGui"):WaitForChild("TextLabel").Text == DisplayName then
 					Update()
 					v2.Position = PlayerPos.Position
 				else
-					v2:Destroy()
+					v.Name = "Plot"
 				end
 			end
 		end
@@ -129,7 +130,6 @@ local AntiAfk = game:GetService("VirtualUser")
     wait(1)
     AntiAfk:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
-while task.wait(0.0001) do
+while task.wait(0.001) do
 	Marbles()
-	Obby()
 end
