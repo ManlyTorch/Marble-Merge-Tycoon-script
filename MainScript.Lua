@@ -45,10 +45,10 @@ local function DepositScript()
 		PlayerPos.CFrame = CFrame.new(DBX, 6, DBZ, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
 		-- DepositButton
 		task.wait(0.5)
-		PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
-		-- MergeButton
-		task.wait(0.5)
 		if not RateToggle then
+			PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
+			-- MergeButton
+			task.wait(0.5)
 			PlayerPos.CFrame = CFrame.new(MBX, 6, MBZ-20, 1, 4.76592279e-29, -2.98949465e-25, -4.76592279e-29, 1, 1.22316572e-27, 2.98949465e-25, -1.22316572e-27, 1)
 			-- Extra Position to avoid hitting other buttons.
 			task.wait(0.5)
