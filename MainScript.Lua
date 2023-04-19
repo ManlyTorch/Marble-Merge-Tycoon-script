@@ -1,4 +1,5 @@
-local bg = Instance.new('BodyGyro',game.Workspace.Manly_Torch:WaitForChild('HumanoidRootPart'))
+local Player = game.Players.LocalPlayer.Name
+local bg = Instance.new('BodyGyro', game.Workspace:WaitForChild(Player):WaitForChild('HumanoidRootPart'))
 local playerHead = game.Players.LocalPlayer.Character.Head
 local function DepositScript()
 	local RateToggle = false
@@ -103,7 +104,24 @@ local function ObbyScript()
 		Obby()
 	end
 end
-coroutine.wrap(ObbyScript)() 
+coroutine.wrap(ObbyScript)()
+local function ChestScript()
+	local script = Instance.new("LocalScript", game.CoreGui)
+	script.Name = "ChestScript"
+	local Premium = game.Workspace:WaitForChild("PremiumRewardCircle").Touchy.TouchInterest
+	local Group = game.Workspace:WaitForChild("GroupRewardCircle").Touchy.TouchInterest
+	local function Chest()
+		firetouchinterest(playerHead, Group.Parent, 0)
+		firetouchinterest(playerHead, Premium.Parent, 0)
+		task.wait(0.1)
+		firetouchinterest(playerHead, Group.Parent, 1)
+		firetouchinterest(playerHead, Premium.Parent, 1)
+	end
+	while task.wait(0.2) and true do
+		Chest()
+	end
+end
+coroutine.wrap(ChestScript)()
 local Player = game.Players.LocalPlayer.Name
 local PlayerPos = game.Workspace[Player].HumanoidRootPart
 local function Update()
@@ -119,6 +137,7 @@ local function Marbles()
 				if v:WaitForChild("BillboardGui"):WaitForChild("TextLabel").Text == DisplayName then
 					Update()
 					v2.Position = PlayerPos.Position
+					v2.CanCollide = false
 				else
 					v.Name = "Plot"
 				end
