@@ -8,7 +8,6 @@ local function DepositScript()
 	local Player = game.Players.LocalPlayer.Name
 	local PlayerPos = game.Workspace[Player].HumanoidRootPart
 	local function Deposit()
-		local DisplayName = game.Players.LocalPlayer.DisplayName
         local RUX = 1
         local RUZ = 1
         local DRBX = 1
@@ -17,27 +16,25 @@ local function DepositScript()
         local DBZ = 1
         local MBX = 1
         local MBZ = 1
-		for i, v in pairs(game.Workspace:GetChildren()) do
-			if v.Name == "Template" then
-				if v:WaitForChild("BillboardGui"):WaitForChild("TextLabel").Text == DisplayName then
-					for i2, v2 in pairs(v:GetChildren()) do
-						if v2.Name == "NewDropperButton" then
-							local DropperText = string.split(v2.BillboardGui.Main.Text, " ")
-                            if DropperText[1] == "+25" then
-                                DRBX = v2.Base.Position.X
-                                DRBZ = v2.Base.Position.Z
-                            end
-						end
-						if v2.Name == "SellButton" then
-							DBX = v2.Base.Position.X
-							DBZ = v2.Base.Position.Z
-                        elseif v2.Name == "MergeButton" then
-                            MBX = v2.Base.Position.X
-                            MBZ = v2.Base.Position.Z
-                        elseif v2.Name == "Upgrade Sell" then
-                            RUX = v2.Base.Position.X
-                            RUZ = v2.Base.Position.Z
-						end
+		for i, v in pairs(game.Workspace.Tycoons:GetChildren()) do
+			if v.Name == Player.."_tycoon" then
+				for i2, v2 in pairs(v:GetChildren()) do
+					if v2.Name == "NewDropperButton" then
+						local DropperText = string.split(v2.BillboardGui.Main.Text, " ")
+                        if DropperText[1] == "+25" then
+                            DRBX = v2.Base.Position.X
+                            DRBZ = v2.Base.Position.Z
+                        end
+					end
+					if v2.Name == "SellButton" then
+						DBX = v2.Base.Position.X
+						DBZ = v2.Base.Position.Z
+                    elseif v2.Name == "MergeButton" then
+                        MBX = v2.Base.Position.X
+                        MBZ = v2.Base.Position.Z
+                    elseif v2.Name == "Upgrade Sell" then
+                        RUX = v2.Base.Position.X
+                        RUZ = v2.Base.Position.Z
 					end
 				end
 			end
@@ -130,17 +127,14 @@ local function Update()
 end
 Update()
 local DisplayName = game.Players.LocalPlayer.DisplayName
+print(Player.."_tycoon")
 local function Marbles()
-	for i, v in pairs(game.Workspace:GetChildren()) do
-		if v.Name == "Template" then
+	for i, v in pairs(game.Workspace:WaitForChild("Tycoons"):GetChildren()) do
+		if v.Name == Player.."_tycoon" then
 			for i2, v2 in pairs(v:WaitForChild("Marbles"):GetChildren()) do
-				if v:WaitForChild("BillboardGui"):WaitForChild("TextLabel").Text == DisplayName then
-					Update()
-					v2.Position = PlayerPos.Position
-					v2.CanCollide = false
-				else
-					v.Name = "Plot"
-				end
+				Update()
+				v2.Position = PlayerPos.Position
+				v2.CanCollide = false
 			end
 		end
 	end
